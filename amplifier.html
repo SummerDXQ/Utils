@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-1.10.1.min.js"></script>
+    <style>
+        *{margin: 0px; padding: 0px;}
+       #small{
+           width: 250px;
+           height: 365px;
+           border: 1px solid black;
+           position: absolute;
+           top: 100px;
+           left: 100px;
+       }
+       #small img{
+           width: 100%;
+           height: 100%;
+       }
+       #big img{
+           width: 1000px;
+           height: 1460px;
+       }
+       #big{
+           display: none;
+           overflow: hidden;
+           width: 400px;
+           height: 400px;
+           position: absolute;
+           top: 100px;
+           left: 400px;
+           position: absolute;
+       }
+       #big img{
+           position: absolute;
+       }
+       #mark{
+           display: none;
+           background-color: #fff;
+           opacity: 0.5;
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 50px;
+           height: 50px;
+       }
+    </style>
+</head>
+<body>
+
+    <div id="small">
+        <img src="./1.jpg" alt="">
+        <div id="mark"></div>
+    </div>
+    <div id="big">
+        <img src="./1.jpg" alt="">
+    </div>
+
+    <script>
+        $(function(){
+            $("#small").mouseenter(function(){
+                $("#mark").show()
+                $("#big").show()
+            }).mouseleave(function(){
+                $("#mark").hide()
+                $("#big").hide()
+            }).mousemove(function(e){
+                var l = e.pageX - $(this).offset().left-25
+                var t=e.pageY-$(this).offset().top-25
+                if(l<=0){
+                    l=0;
+                }
+                if(l>=150){
+                    l=150;
+                }
+                if(t<0){
+                    t=0
+                }
+                if(t>=265){
+                    t=265
+                }
+                $("#mark").css({
+                    left:l,
+                    top:t
+                })
+
+                $("#big img").css({
+                    left:-4*l,
+                    top:-4*t
+                })
+            })
+        })
+    </script>
+</body>
+</html>
